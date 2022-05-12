@@ -1,5 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
 const generateToken = require("../../middleware/generateToken");
+const logger = require("../../config/logger");
 const User = require("../../models/User");
 
 //registration
@@ -17,8 +18,10 @@ const registerUser = expressAsyncHandler(async (req, res) => {
     // console.log(req.body);
     const user = await User.create({ email, firstname, lastname, password });
     res.status(200).json({ msg: "User Created" });
+    logger.info("Register");
     // console.log("User created");
   } catch (error) {
+    logger.info("Registration error");
     res.json(error);
   }
 });
@@ -40,7 +43,7 @@ const loginuser = expressAsyncHandler(async (req, res) => {
 
   //check password
   if (userFound && (await userFound.isPasswordMatch(password))) {
-    // console.log("working");
+    logger.info("Login");
     res.json({
       id: userFound?._id,
       email: userFound?.email,
@@ -48,8 +51,10 @@ const loginuser = expressAsyncHandler(async (req, res) => {
       lastname: userFound?.lastname,
       token: generateToken(userFound?._id),
     });
+
   } else {
     res.status(401);
+    logger.info("Login error");
     throw new Error("Invalid User Credentials!");
   }
 });

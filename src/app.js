@@ -18,7 +18,6 @@ dotenv.config();
 db();
 
 
-
 //middleware
 app.use(express.json()); // to allow posting json data
 
