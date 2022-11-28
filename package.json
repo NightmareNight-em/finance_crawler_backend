@@ -27,7 +27,7 @@
     "express-async-handler": "^1.2.0",
     "jest": "^28.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.3.0",
+    "mongoose": "^6.4.6",
     "mongoose-paginate-v2": "^1.6.3",
     "supertest": "^6.2.3",
     "winston": "^3.7.2"
