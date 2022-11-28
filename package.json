@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node ./src/server.js",
     "serve": "nodemon ./src/server.js",
-    "test": "jest --runInBand --detectOpenHandles --forceExit"
+    "test": "jest --watchAll --no-cache --detectOpenHandles"
   },
   "keywords": [
     "MERN"
