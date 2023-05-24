@@ -50,10 +50,6 @@ app.use(Sentry.Handlers.requestHandler());
 app.use(Sentry.Handlers.tracingHandler());
 // -------------------------------------------------
 
-// //setting up cors
-// app.use(cors());
-
-
 //users routes
 app.use("/api/users", usersRoute);
 app.get("/", (req, res) => {
@@ -65,7 +61,6 @@ app.use("/api/income", incomeRoute);
 
 //expense routes
 app.use("/api/expense", expRoute);
-//app.get("//", fwbheofhw);
 
 //error handling
 app.use(notFound);

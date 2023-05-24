@@ -2,7 +2,6 @@ const income = require("../../models/income");
 const expressAsyncHandler = require("express-async-handler");
 
 const createIncome = expressAsyncHandler(async (req, res) => {
-  console.log(req?.body);
   const { title, description, amount } = req?.body;
   try {
     const inc = await income.create({
@@ -49,11 +48,6 @@ const fetchSingle = expressAsyncHandler(async (req, res) => {
     const docs = await income.find({ user: { _id: id } });
 
     const totalpages = Math.ceil(docs.length / resultsPerPage);
-    // console.log(totalpages);
-    // const exp1 = await exp.paginate(
-    //   {},
-    //   { limit: 7, page: page, populate: "user" }
-    // );
     res.json({ inc: inc, totalPages: totalpages });
   } catch (error) {
     res.json(error);

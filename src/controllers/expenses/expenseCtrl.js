@@ -18,7 +18,7 @@ const createExpense = expressAsyncHandler(async (req, res) => {
 });
 
 // fetch all
-const fetchExpenses = expressAsyncHandler(async (req, res) => {
+const fetchAllExpenses = expressAsyncHandler(async (req, res) => {
   const page = Number(req?.query.page);
   try {
     const fetchAll = await expense.paginate(
@@ -47,11 +47,6 @@ const fetchSingleExpense = expressAsyncHandler(async (req, res) => {
     const docs = await expense.find({ user: { _id: id } });
 
     const totalpages = Math.ceil(docs.length / resultsPerPage);
-    // console.log(totalpages);
-    // const exp1 = await exp.paginate(
-    //   {},
-    //   { limit: 7, page: page, populate: "user" }
-    // );
     res.json({ exp: exp, totalPages: totalpages });
   } catch (error) {
     res.json(error);
@@ -89,7 +84,6 @@ const updateExpense = expressAsyncHandler(async (req, res) => {
 
 // delete expense
 const deleteExpense = expressAsyncHandler(async (req, res) => {
-  // console.log("here");
   const { id } = req?.params;
   try {
     const exp = await expense.findByIdAndDelete(id);
@@ -102,7 +96,7 @@ const deleteExpense = expressAsyncHandler(async (req, res) => {
 
 module.exports = {
   createExpense,
-  fetchExpenses,
+  fetchAllExpenses,
   fetchSingleExpense,
   fetchSingleWithoutPagination,
   updateExpense,
