@@ -7,7 +7,7 @@ const dbConnect = async () => {
       useNewUrlParser: true,
       autoIndex: true,
     });
-    // console.log("DB connected successfully!");
+    console.log("DB connected successfully!");
   } catch (error) {
     console.log("Error:" + error.message);
   }
